@@ -15,7 +15,7 @@ var player = {
 
 var bola = {
     x: Width/2 - 25 ,
-    y:  Height/2 - 100,
+    y:  Height - 200,
     largura:  25,
     altura:  25,
     dirx: 1 ,
@@ -56,9 +56,23 @@ function moveP() {
 }
 
 function moveB() {
-    if(bola.y>0){
-        bola.y += bola.y ;
+    //Movimento horizontal
+    if(bola.x<=0){
+        bola.dirx = 1 ;
+    }else if(bola.x + bola.largura>=Width) {
+        bola.dirx = -1;
     }
+
+    //Movimento vertical
+
+    if( bola.y<=0){
+        bola.diry = 1;
+    } else if(bola.y + bola.altura  >= player.y && bola.x >= player.x && bola.x <= player.x + player.largura ){
+        bola.diry = -1;
+    }
+
+    bola.x += (bola.speed * bola.dirx);
+    bola.y += (bola.speed * bola.diry);
 }
 
 
