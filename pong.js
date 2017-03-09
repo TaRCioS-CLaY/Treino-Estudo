@@ -16,12 +16,45 @@ var player = {
 var bola = {
     x: Width/2 - 25 ,
     y:  Height - 200,
-    largura:  25,
-    altura:  25,
+    largura:  20,
+    altura:  20,
     dirx: 1 ,
     diry: 1  ,
-    speed: 1.0005
+    speed: 2.0005
 };
+
+
+var vidas = {
+        _v: [],
+        
+        insere: function(){
+            
+            this._v.push({
+                x: 2,
+                y: 5,
+                largura: 10,
+                altura: 10
+            });
+
+        },
+        
+
+        desenha: function(){
+            for (var i = 0; i < this._v.length; i++) {
+                var v = this._v[i];
+
+                // if(this._v[i].x == this._v.some)
+
+                ctx.fillRect(this._v[i].x, v.y, v.largura, v.altura);
+                
+            }    
+        },
+
+};
+
+
+
+
 /*
 var blocos = {
     x:  ,
@@ -63,6 +96,13 @@ function moveB() {
         bola.dirx = -1;
     }
 
+/*teste pra bater do lado
+    if(bola.y + bola.altura >= player.y && bola.y + bola.altura <= player.y + player.altura && bola.x >= player.y + player.altura){
+        bola.diry = -1;
+        alert("acertour");
+        
+    }
+*/
     //Movimento vertical
 
     if( bola.y<=0){
@@ -76,6 +116,10 @@ function moveB() {
 }
 
 
+function novatentativa(){
+    
+}
+
 
  function desenha(){
      ctx.clearRect(0,0,Width,Height);
@@ -84,7 +128,9 @@ function moveB() {
     ctx.fillStyle = "white";
     ctx.fillRect(player.x ,player.y ,player.largura ,player.altura);
     ctx.fillRect(bola.x,bola.y, bola.largura, bola.altura);
-    setTimeout(desenha, 10);
+    vidas.desenha();
+    // ctx.fillRect(vidas.x, vidas.y, vidas.largura, vidas.altura);
+    setTimeout(desenha, 5);
  }
 
  desenha();
